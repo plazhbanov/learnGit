@@ -1,0 +1,189 @@
+<mvc:View
+	controllerName="pise.mi.plm.bom.controller.Worklist"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.m.semantic"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:footerbar="sap.ushell.ui.footerbar">
+
+	<semantic:FullscreenPage
+		id="page"
+		navButtonPress="onNavBack"
+		showNavButton="true"
+		title="{i18n>worklistViewTitle}">
+
+		<semantic:content>
+			<f:SimpleForm
+				maxContainerCols="2"
+				editable="true"
+				layout="ResponsiveGridLayout"
+				labelSpanL="1"
+				labelSpanM="1"
+				emptySpanL="0"
+				emptySpanM="0"
+				columnsL="1"
+				columnsM="1">
+				<f:content>
+					<Label text="{i18n>ValidDateFilter}" labelFor="DP"/>
+					<DatePicker
+						id="DP"
+						width="150px"
+						value="15-04-2015" valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy"
+						change=""/>
+				</f:content>
+			</f:SimpleForm>
+			<f:SimpleForm
+				maxContainerCols="2"
+				editable="true"
+				layout="ResponsiveGridLayout"
+				labelSpanL="3"
+				labelSpanM="3"
+				emptySpanL="1"
+				emptySpanM="1"
+				columnsL="1"
+				columnsM="1">
+				<f:content>
+					<Label text="{i18n>SearchMBOMFilter}" labelFor="MBOMInput"/>
+					<Input
+						id="MBOMInput"
+						type="Text"
+						width="80%"
+						placeholder="{i18n>SearchMBOMPlaceholder}"
+						showSuggestion="true"
+						showTableSuggestionValueHelp="false"
+						suggestionRows="{/BomHeaderSet}"
+						suggestionItemSelected="onPressSItem">
+						<suggestionColumns>
+							<Column id="searchMbomColumn">
+								<Text text="{i18n>TableMbomColumnTitle}" id="searchMbomColumnTitle" visible="false"/>
+							</Column>
+							<Column id="searchLocationColumn">
+								<Text text="{i18n>TableLocationColumnTitle}" id="searchLocationColumnTitle" visible="false"/>
+							</Column>
+							<Column id="searchBomUsageColumn">
+								<Text text="{i18n>TableBomUsageColumnTitle}" id="searchBomUsageColumnTitle" visible="false"/>
+							</Column>
+							<Column id="searchAlternativeColumn">
+								<Text text="{i18n>TableAlternativeColumnTitle}" id="searchAlternativeColumnTitle" visible="false"/>
+							</Column>
+							<Column id="searchPictureColumn" width="60px">
+								
+							</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label
+										text="{Matnr}"/>
+									<ObjectIdentifier
+										title="{Werks}" text="{Stlty}"/>
+									<ObjectIdentifier
+										title="{Stlan}"/>
+									<ObjectIdentifier
+										title="{Stlal}"/>
+									<Image
+										src="http://southernimportspecialist.com/wp-content/uploads/2014/09/engine1.png"
+										width="50px"
+										height="50px"
+										densityAware="false"
+										> 
+									</Image>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					</Input>
+				</f:content>
+			</f:SimpleForm>
+			<Table
+				id="table"
+				width="auto"
+				class="sapUiResponsiveMargin"
+				items="{
+					path: '/BomHeaderSet',
+					sorter: {
+						path: 'Matnr',
+						descending: false
+						}
+					}"
+				noDataText="{i18n>tableNoDataText}"
+				busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+				growing="true"
+				growingScrollToLoad="true"
+				updateFinished="onUpdateFinished">
+				<headerToolbar>
+					<Toolbar>
+						<Title id="tableHeader" text="{i18n>bomTableTitle}"/>
+					</Toolbar>
+				</headerToolbar>
+
+				<columns>
+					<Column id="favoriteColumn" width="60px">
+						<Text text="{i18n>TableFavoriteColumnTitle}" id="favoriteColumnTitle"/>
+					</Column>
+					<Column id="mbomColumn">
+						<Text text="{i18n>TableMbomColumnTitle}" id="mbomColumnTitle"/>
+					</Column>
+					<Column id="locationColumn">
+						<Text text="{i18n>TableLocationColumnTitle}" id="locationColumnTitle"/>
+					</Column>
+					<Column id="bomUsageColumn">
+						<Text text="{i18n>TableBomUsageColumnTitle}" id="bomUsageColumnTitle"/>
+					</Column>
+					<Column id="alternativeColumn">
+						<Text text="{i18n>TableAlternativeColumnTitle}" id="alternativeColumnTitle"/>
+					</Column>
+					<Column id="pictureColumn" width="80px"></Column>
+				</columns>
+
+				<items>
+					<ColumnListItem
+						type="Navigation"
+						press="onPress">
+						<cells>
+							<core:Icon src="sap-icon://favorite" class="size1" color="#ffbf00"></core:Icon>
+							<ObjectIdentifier
+								title="{Matnr}"/>
+							<ObjectIdentifier
+								title="{Werks}" text="{Stlty}"/>
+							<ObjectIdentifier
+								title="{Stlan}"/>
+							<ObjectIdentifier
+								title="{Stlal}"/>
+							<Image src="http://southernimportspecialist.com/wp-content/uploads/2014/09/engine1.png"
+								width="50px"
+								densityAware="false"></Image>
+							<!-- <ObjectNumber
+								number="{
+									path: 'Timeframe',
+									formatter: '.formatter.numberUnit'
+								}"
+								unit="{AssignmentId}"/>-->
+						</cells>
+					</ColumnListItem>
+				</items>
+
+			</Table>
+
+		</semantic:content>
+		
+		<semantic:customFooterContent>
+			<Button id="createVariantButton" text="{i18n>CreateNewVariantBtn}" press="onCreateVariantPress"></Button>
+		</semantic:customFooterContent>
+
+<!-- 		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+		</semantic:sendEmailAction>
+
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
+		</semantic:shareInJamAction>
+
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id ="shareTile" title="{worklistView>/saveAsTileTitle}" />
+		</semantic:saveAsTileAction> -->
+
+	</semantic:FullscreenPage>
+
+</mvc:View>

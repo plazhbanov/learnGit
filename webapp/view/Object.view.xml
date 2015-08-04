@@ -1,0 +1,230 @@
+<mvc:View
+	controllerName="pise.mi.plm.bom.controller.Object"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:s="sap.suite.ui.commons"
+	xmlns:semantic="sap.m.semantic"
+	xmlns:footerbar="sap.ushell.ui.footerbar">
+
+	<semantic:FullscreenPage
+		id="page"
+		navButtonPress="onNavBack"
+		showNavButton="true"
+		title="{i18n>objectTitle}"
+		busy="{objectView>/busy}"
+		busyIndicatorDelay="{objectView>/delay}">
+		<semantic:content>
+			<l:Grid
+				defaultSpan="L12 M12 S12"
+				hSpacing="2">
+				<l:content>
+					<Image 
+						src="http://southernimportspecialist.com/wp-content/uploads/2014/09/engine1.png"
+						width="150px" height="150px">
+						<layoutData>
+							<l:GridData
+								span="L2 M3 S4">
+							</l:GridData>
+						</layoutData>
+					</Image>
+					<ScrollContainer
+						height="160px"
+						width="100%"
+						horizontal="true"
+						vertical="false">
+						<layoutData>
+							<l:GridData
+								span="L9 M7 S6">
+							</l:GridData>
+						</layoutData>
+						<Image>
+						</Image>
+		<!-- 				<s:Timeline
+		id="idTimeline"
+		enableSocial="true"
+		width="30%"
+		select="onChangeNumberPress"
+		sortOldestFirst="true">
+		<s:content>
+			<s:TimelineItem
+				text="Change Number 2312345"
+				icon="sap-icon://notes"
+				dateTime="Date(1423049200000)"
+				userName="">
+			</s:TimelineItem>
+		</s:content>
+	</s:Timeline>	 -->
+						<s:Timeline
+							id="Timeline"
+							axisOrientation="Horizontal"
+							enableScroll="false"
+							showHeaderBar="false"
+							enableAllInFilterItem="false"
+							select="onChangeNumberPress">
+							<s:content>
+								<s:TimelineItem
+									text="Change Number 2312345"
+									icon="sap-icon://notes"
+									dateTime="Date(1423049200000)"
+									userName="">
+								</s:TimelineItem>
+								<s:TimelineItem
+									text="Change Number 23424245"
+									icon="sap-icon://notes"
+									dateTime="Date(141249200000)"
+									userName="">
+								</s:TimelineItem>
+								<s:TimelineItem
+									text="Change Number 12324245"
+									icon="sap-icon://notes"
+									dateTime="Date(14072300000)"
+									userName="">
+								</s:TimelineItem>
+								<s:TimelineItem
+									text="Change Number 23424245"
+									icon="sap-icon://notes"
+									dateTime="Date(1407049200000)"
+									userName="">
+								</s:TimelineItem>
+								<s:TimelineItem
+									text="Change Number 23424245"
+									icon="sap-icon://notes"
+									dateTime="Date(1407049200000)"
+									userName="">
+								</s:TimelineItem>
+							</s:content>
+						</s:Timeline>
+						
+					</ScrollContainer>
+					<Button
+						class="sapUiLargeMarginTop sapUiSmallMarginBegin"
+						icon="sap-icon://add"
+						press="onCreateChangePress">
+						<layoutData>
+							<l:GridData
+								span="L1 M2 S2">
+							</l:GridData>
+						</layoutData>
+					</Button>
+				</l:content>
+			</l:Grid>
+			
+			<Table
+				id="table"
+				width="auto"
+				class="sapUiResponsiveMargin"
+				items="{
+					path: '/BomItemsSet',
+					sorter: {
+						path: 'Matnr',
+						descending: false
+						}
+					}"
+				noDataText="{i18n>tableNoDataText}"
+				busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+				growing="true"
+				growingScrollToLoad="true"
+				updateFinished="onUpdateFinished">
+
+				<columns>
+					<Column id="favoriteColumn">
+						<Label text="IC" id="favoriteColumnTitle"/>
+					</Column>
+					<Column id="mbomColumn">
+						<Label text="Component" id="mbomColumnTitle"/>
+					</Column>
+					<Column id="locationColumn">
+						<Label text="Description" id="locationColumnTitle"/>
+					</Column>
+					<Column id="bomUsageColumn">
+						<Label text="QTY" id="bomUsageColumnTitle"/>
+					</Column>
+					<Column id="alternativeColumn">
+						<Label text="UOM" id="alternativeColumnTitle"/>
+					</Column>
+					<Column id="pictureColumn">
+						<Label text="Group" id="pictureColumnTitle"/>
+					</Column>
+					<Column id="purGP">
+						<Label text="Purchasing GP" id="purGPColumnTitle"/>
+					</Column>
+					<Column id="price">
+						<Label text="Price" id="priceColumnTitle"/>
+					</Column>
+					<Column id="uPrice">
+						<Label text="Unit Price" id="uPriceColumnTitle"/>
+					</Column>
+					<Column id="cur">
+						<Label text="Currency" id="curColumnTitle"/>
+					</Column>
+					<Column id="uSize">
+						<Label text="Unit Size" id="uSizeColumnTitle"/>
+					</Column>
+					<Column id="formula">
+						<Label text="Formula" id="formulaColumnTitle"/>
+					</Column>
+				</columns>
+
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text
+								text="{Matnr}"/>
+							<Text
+								text="{Werks}"/>
+							<Text
+								text="{Stlan}"/>
+							<Text
+								text="{Idnrk}"/>
+							<Text
+								text="{Matkl}"/>
+							<Text
+								text="{Menge}"/>
+							<Text
+								text="{Dokar}"/>
+							<Text
+								text="{Class}"/>
+							<Text
+								text="{Capid}"/>
+							<Text
+								text="{Nfmat}"/>
+							<Text
+								text="{Romen}"/>
+							<Text
+								text="{Roanz}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+
+			</Table>
+			
+
+			<!-- <ObjectHeader
+				id="objectHeader"
+				title="{AssignmentId}"
+				number="{ProjectName}"
+				numberUnit="{Location}">
+			</ObjectHeader> -->
+ 		</semantic:content>
+ 		<semantic:customFooterContent>
+			<Button text="Save" press=""></Button>
+			<Button text="Delete" press=""></Button>
+			<Button text="Mass Attributes Update" press="onAttrUpdatePress"></Button>
+		</semantic:customFooterContent>
+<!-- 
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+		</semantic:sendEmailAction>
+
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
+		</semantic:shareInJamAction>
+
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id ="shareTile" title="{objectView>/saveAsTileTitle}" />
+		</semantic:saveAsTileAction>
+ -->
+	</semantic:FullscreenPage>
+
+</mvc:View>

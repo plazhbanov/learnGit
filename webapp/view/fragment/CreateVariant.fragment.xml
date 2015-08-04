@@ -1,0 +1,35 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns="sap.m">
+
+  	<Dialog title="{i18n>createMBOMVariantDiaTitle}">
+		<f:SimpleForm
+			columnsL="1"
+			columnsM="1"
+			labelSpanM="3"
+			labelSpanL="3"
+			emptySpanM="4"
+			emptySpanL="4">
+			<f:content>
+				<Label text="{i18n>ValidDateDiaTitle}"/>
+				<DatePicker/>
+				<Label text="{i18n>SelectMaterialDiaTitle}"/>
+				<Input></Input>
+				<Label text="{i18n>BomUsageDiaTitle}"/>
+				<Input></Input>
+				<Label text="{i18n>AltBomDiaTitle}"/>
+				<Input></Input>
+				<Label text="{i18n>SetFavDiaTitle}"/>
+				<CheckBox/>
+			</f:content>
+		</f:SimpleForm>
+    	<beginButton>
+      		<Button text="OK" press="onCloseCreateVariantDialog"/>
+    	</beginButton>
+    	<endButton>
+      		<Button text="Cancel" press="onCloseCreateVariantDialog"/>
+    	</endButton>
+  	</Dialog>
+</core:FragmentDefinition>

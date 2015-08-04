@@ -1,0 +1,28 @@
+{
+	"run": [
+		{
+			"filePath": "/BOMMaintenance/webapp/test/testFLP.html",
+			"previewMode": 0,
+			"dataMode": 1,
+			"workspace": "withoutWorkspace",
+			"urlParameters": [],
+			"_metadata": {
+				"runnerId": "webapprunner",
+				"id": 1978925,
+				"displayName": "Run with Server"
+			}
+    },
+		{
+			"filePath": "/BOMMaintenance/webapp/test/testFLPService.html",
+			"previewMode": 0,
+			"dataMode": 1,
+			"workspace": "withoutWorkspace",
+			"urlParameters": [],
+			"_metadata": {
+				"runnerId": "webapprunner",
+				"id": 1978925,
+				"displayName": "Run with MockServer"
+			}
+    }
+  ]
+}
